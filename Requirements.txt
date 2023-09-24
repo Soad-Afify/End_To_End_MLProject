@@ -1,0 +1,6 @@
+## -e . This is used to setup,py run 
+
+pandas
+numpy
+seaborn
+-e .
