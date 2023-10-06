@@ -8,6 +8,12 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
+from src.components.data_transformation import DataTransformation
+from src.components.data_transformation import DataTransformationConfig
+
+#from src.components.Model_trainer import ModelTrainer
+#from src.components.Model_trainer import ModelTrainerConfig
+
 
 @dataclass # no need to use __init__ if we need to define variables, but we if we will create methods in the class it's better to use __inut__
 class DataIngestionConfig:
@@ -18,7 +24,7 @@ class DataIngestionConfig:
 
 class DataIngestion:
     def __init__(self):
-        self.ingestion_config = DataIngestionConfig() # this attribute will sva the data in the above pathes
+        self.ingestion_config = DataIngestionConfig() # this attribute will save the data in the above pathes
 
     def initiate_data_ingestion(self):
         '''
@@ -45,8 +51,8 @@ class DataIngestion:
             return(
                 self.ingestion_config.train_data_path,
                 self.ingestion_config.test_data_path
-            )
-        
+                )
+            
         except Exception as e:
             raise CustomException(e, sys)
         
@@ -54,5 +60,7 @@ class DataIngestion:
 
 if __name__ == "__main__":
     obj = DataIngestion()
-    obj.initiate_data_ingestion()
+    train_data, test_data = obj.initiate_data_ingestion()
     
+    data_transformation = DataTransformation()
+    data_transformation.intiate_data_transformation(train_data, test_data)
