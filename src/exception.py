@@ -5,8 +5,8 @@ from src.logger import LOG_FILE_PATH
 def error_message_detail(error,error_detail):
     error_detail =sys
     _,_,exc_tb=error_detail.exc_info()
-    #file_name=exc_tb.tb_frame.f_code.co_filename
-    error_message="Error occured in python script: error message[{0}]".format(str(error))
+    file_name=exc_tb.tb_frame.f_code.co_filename
+    error_message="Error occured in Python Script name [{0}] Line No. [{1}] Error Message [{2}]".format(file_name, exc_tb.tb_lineno, str(error))
 
     return error_message
 
@@ -23,7 +23,7 @@ class CustomException(Exception):
     
 
     
-'''
+
 
 ## Test CustomException
 if __name__ == "__main__":
@@ -31,6 +31,5 @@ if __name__ == "__main__":
         a=1/0
     except Exception as e:    
         logging.info("Divide by Zero")
-        raise CustomException(e,sys)
+        raise CustomException(e, sys)
 
-'''
