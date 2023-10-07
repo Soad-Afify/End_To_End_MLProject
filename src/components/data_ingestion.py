@@ -11,8 +11,8 @@ from dataclasses import dataclass
 from src.components.data_transformation import DataTransformation
 from src.components.data_transformation import DataTransformationConfig
 
-#from src.components.Model_trainer import ModelTrainer
-#from src.components.Model_trainer import ModelTrainerConfig
+from src.components.Model_trainer import ModelTrainer
+from src.components.Model_trainer import ModelTrainerConfig
 
 
 @dataclass # no need to use __init__ if we need to define variables, but we if we will create methods in the class it's better to use __inut__
@@ -63,4 +63,8 @@ if __name__ == "__main__":
     train_data, test_data = obj.initiate_data_ingestion()
     
     data_transformation = DataTransformation()
-    data_transformation.intiate_data_transformation(train_data, test_data)
+    train_arr, test_arr,_ = data_transformation.intiate_data_transformation(train_data, test_data)
+
+    model_trainer = ModelTrainer()
+    model_name, score = model_trainer.intiate_model_trainer(train_array=train_arr, test_array=test_arr)
+    print("Best model name: ", model_name, " with r2score ", score)

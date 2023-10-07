@@ -91,7 +91,7 @@ class DataTransformation:
 
             logging.info('Concatenate arrays "x & y" along second axis') #columns
             train_arr = np.c_[x_train_arr, np.array(y_train)]
-            test_arr = np.c_[x_test, np.array(y_test)]
+            test_arr = np.c_[x_test_arr, np.array(y_test)]
 
             logging.info('Save preprocessing object "pkl file"')
 
